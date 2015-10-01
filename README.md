@@ -12,7 +12,7 @@ Configureable Map Viewer using OpenLayers 3. A map viewer based on [CMV](https:/
 * Growler
 * Help
 * Home button
-* Identify Popup
+* Identify popup
 * Measure
 * Locate button
 * Map info
@@ -21,7 +21,7 @@ Configureable Map Viewer using OpenLayers 3. A map viewer based on [CMV](https:/
 
 ###Upcoming Widgets:
 * Search
-* Attribute Table
+* Attribute table
 * Edit
 * Print
 
