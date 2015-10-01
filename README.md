@@ -1,10 +1,10 @@
 # ocmv
 Configureable Map Viewer using OpenLayers 3. A map viewer based on [CMV](https://github.com/cmv/cmv-app).
 
-##Supported Data Types:
+###Supported Data Types:
 * WMS
  
-##Current Widgets:
+###Current Widgets:
 * Bookmarks
 * Draw
 * Growler
@@ -17,10 +17,16 @@ Configureable Map Viewer using OpenLayers 3. A map viewer based on [CMV](https:/
 * Overview map
 * StreetView
 
-##Client technology used:
+###Upcoming Widgets:
+* Search
+* Attribute Table
+* Edit
+* Print
+
+###Client technology used:
 * [Openlayers 3](http://openlayers.org/)
 * [Dojotoolkit](http://dojotoolkit.org/)
 
-##Contributing
+###Contributing
 * Pull requests
 
