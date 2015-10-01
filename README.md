@@ -1,7 +1,7 @@
 # ocmv
 Configureable Map Viewer using OpenLayers 3. A map viewer based on [CMV](https://github.com/cmv/cmv-app).
 
-![alt tag](https://github.com/vojvod/CMV_TimeSlider_Widget/blob/master/ocmv1.jpg)
+![alt tag](https://github.com/vojvod/ocmv/blob/master/ocmv1.jpg)
 
 ###Supported Data Types:
 * WMS
