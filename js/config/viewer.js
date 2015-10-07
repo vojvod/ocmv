@@ -168,19 +168,7 @@ define([
 
         ],
         // set include:true to load. For titlePane type set position the the desired order in the sidebar
-        widgets: {
-            mapLegend: {
-                include: false,
-                id: 'mapLegend',
-                type: 'titlePane',
-                path: 'gis/dijit/Legend',
-                title: i18n.legend,
-                open: false,
-                position: 0,
-                options: {
-                    map: true
-                }
-            },
+        widgets: {            
             layerControl: {
                 include: true,
                 id: 'layerControl',
@@ -240,21 +228,7 @@ define([
                     map: true,
                     mapClickMode: true
                 }
-            },
-            print: {
-                include: false,
-                id: 'print',
-                type: 'titlePane',
-                canFloat: false,
-                path: 'gis/dijit/Print',
-                title: 'Print',
-                open: false,
-                position: 5,
-                options: {
-                    map: true
-
-                }
-            },
+            },           
             streetview: {
                 include: true,
                 id: 'streetview',
