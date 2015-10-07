@@ -1,0 +1,75 @@
+<div class="gis_MeasurementDijit">
+    <div class="formContainer">
+        <div style="padding:5px;">
+            <ul class="list-unstyled outerList">
+
+                <li>
+                    <ul class="list-inline list-unstyled">
+
+                        <li>
+                            <button data-dojo-type="dijit/form/Button"
+                                    data-dojo-props="iconClass:'adw-icon-polyline',showLabel:false"
+                                    data-dojo-attach-event="onClick:StartMeausereLength"
+                                    class="measureButton"
+                                    title="${i18n.labels.length}">
+                                ${i18n.labels.length}
+                            </button>
+                        </li>
+
+                        <li>
+                            <button data-dojo-type="dijit/form/Button"
+                                    data-dojo-props="iconClass:'adw-icon-rectangle',showLabel:false"
+                                    data-dojo-attach-event="onClick:StartMeausereArea"
+                                    class="measureButton"
+                                    title="${i18n.labels.area}">
+                                ${i18n.labels.area}
+                            </button>
+                        </li>
+
+                        <li>
+                            <button data-dojo-type="dijit/form/Button"
+                                    data-dojo-attach-point="stopMeasuringButton"
+                                    data-dojo-props="iconClass:'fa fa-stop fa-fw',showLabel:false,disabled:false"
+                                    data-dojo-attach-event="onClick:stopMeasuring"
+                                    class="measureButton"
+                                    title="${i18n.labels.stopMeasuring}">
+                                ${i18n.labels.stopMeasuring}
+                            </button>
+                        </li>
+
+                        <li>
+                            <button data-dojo-type="dijit/form/Button"
+                                    data-dojo-attach-point="clearMeasuringButton"
+                                    data-dojo-props="iconClass:'fa fa-history fa-fw',showLabel:false,disabled:false"
+                                    data-dojo-attach-event="onClick:clearMeasuring"
+                                    class="measureButton"
+                                    title="${i18n.labels.clearMeasuring}">
+                                ${i18n.labels.clearMeasuring}
+                            </button>
+                        </li>
+
+                    </ul>
+
+                </li>
+
+                <li>
+                    <input type="checkbox" id="geodesicCheckbox"
+                           data-dojo-attach-point="geodesicCheckbox"
+                           data-dojo-type="dijit/form/CheckBox">
+                    <label for="geodesicCheckbox">use geodesic measures</label>
+                </li>
+
+                <li>
+                    <div class="measureModeIndicatorNode">
+                        <span style="font-weight: bold">${i18n.labels.currentMeasureMode}</span>
+                        <span data-dojo-attach-point="measureModeTextNode">${i18n.labels.currentMeasureModeNone}</span>
+                    </div>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</div>
