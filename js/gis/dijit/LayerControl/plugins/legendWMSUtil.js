@@ -56,29 +56,36 @@ define([
         // determine what the renderer is and handle appropriately
         wmsLegend: function (layer, expandNode) {
 
-            var legengURL = layer.options.url + '?REQUEST=GetLegendGraphic&sld_version=1.0.0&layer=' + layer.options.params.LAYERS + '&format=image/png';
+            var layersName = layer.options.params.LAYERS.split(',');
 
-            //create legend table
-            var table = domConst.create('table');
-            domClass.add(table, 'layerControlLegendTable');
+            array.forEach(layersName, function(name){
 
-            //create a table row and symbol
-            var row = domConst.create('tr', {}, table, 'last'),
-            symbol = domConst.create('td', {
-               'class': 'layerControlLegendImage'
-            }, row, 'first');
+                var legengURL = layer.options.url + '?REQUEST=GetLegendGraphic&sld_version=1.0.0&layer=' + name + '&format=image/png';
 
-            // create image
-            var img = domConst.create('img', {
-                src: legengURL
-            }, symbol);
-            domStyle.set(img, {
-                'width': '100%'
+                //create legend table
+                var table = domConst.create('table');
+                domClass.add(table, 'layerControlLegendTable');
+
+                //create a table row and symbol
+                var row = domConst.create('tr', {}, table, 'last'),
+                    symbol = domConst.create('td', {
+                        'class': 'layerControlLegendImage'
+                    }, row, 'first');
+
+                // create image
+                var img = domConst.create('img', {
+                    src: legengURL
+                }, symbol);
+                domStyle.set(img, {
+                    'width': '100%'
+                });
+                domClass.add(img, layer.options.params.LAYERS + '-layerLegendImage');
+
+                // place legend in expandNode
+                domConst.place(table, expandNode);
+
             });
-            domClass.add(img, layer.options.params.LAYERS + '-layerLegendImage');
 
-            // place legend in expandNode
-            domConst.place(table, expandNode);
 
         }
     };
