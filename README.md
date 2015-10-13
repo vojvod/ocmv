@@ -1,4 +1,4 @@
-# ocmv (beta version)
+# ocmv
 Configureable Map Viewer using OpenLayers 3. A map viewer based on [CMV](https://github.com/cmv/cmv-app).
 
 ![alt tag](https://github.com/vojvod/ocmv/blob/master/ocmv1.jpg)
