@@ -247,7 +247,7 @@ define([
                             visible: false,
                             preload: Infinity,
                             source: new ol.source.BingMaps({
-                                key: 'Ak-dzM4wZjSqTlzveKz5u0d4IQ4bRzVI309GxmkgSVr1ewS6iPSrOvOKhA-CJlm3',
+                                key: 'AuDk1iAW3BkYvV6i10pRELQqS-B9v2aPODSD8uIEWgGSioacp-9Tj7wEZdi69Z8p',
                                 imagerySet: value.style
                             })
                         });
