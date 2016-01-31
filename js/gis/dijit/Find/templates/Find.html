@@ -1,0 +1,111 @@
+<div class="gis_FindDijit">
+    <div class="formContainer">
+        <div data-dojo-type="dijit/form/Form" data-dojo-attach-point="searchFormDijit">
+
+            <div data-dojo-attach-point="layerSelectDom">
+                <label>${i18n.selectLayer}:</label><br/>
+                <input type="select" data-dojo-type="dijit/form/FilteringSelect"
+                       data-dojo-props="name:'searchLayer',autoComplete:true,required:true,searchAttr:'name','class':'querySelect'"
+                       data-dojo-attach-point="layerSelectDijit"
+                       data-dojo-attach-event="onChange:loadLayersAttributes"/>
+            </div>
+
+            <div data-dojo-attach-point="conditionTextDom">
+                <label>${i18n.conditionText.label}:</label><br/>
+                <select type="select" data-dojo-type="dijit/form/FilteringSelect"
+                        data-dojo-props="'class':'querySelect'" data-dojo-attach-point="conditionSelectDijit">
+                    <option value="INTERSECTS">${i18n.conditionText.intersects}</option>
+                    <option value="WITHIN" selected>${i18n.conditionText.within}</option>
+                </select>
+            </div>
+
+            <div data-dojo-attach-point="drawTextDom">
+                <label style="float: left;margin-top: 8px;margin-right: 8px;padding: 0;">${i18n.conditionDraw.label}:</label>
+                <ul class="list-unstyled outerList" style="float: left;margin: 0;padding: 0;">
+                    <li>
+                        <ul class="list-inline list-unstyled">
+                            <li>
+                                <button data-dojo-type="dijit/form/Button"
+                                        data-dojo-props="iconClass:'adw-icon-polyline',showLabel:false"
+                                        class="drawButton"
+                                        data-dojo-attach-event="onClick:StartDrawPolyline"
+                                        title="${i18n.schemas.polyline}">
+                                    ${i18n.schemas.polyline}
+                                </button>
+                            </li>
+                            <li>
+                                <button data-dojo-type="dijit/form/Button"
+                                        data-dojo-props="iconClass:'adw-icon-polygon',showLabel:false"
+                                        class="drawButton"
+                                        data-dojo-attach-event="onClick:StartDrawPolygon"
+                                        title="${i18n.schemas.polygon}">
+                                    ${i18n.schemas.polygon}
+                                </button>
+                            </li>
+                            <li>
+                                <button data-dojo-type="dijit/form/Button"
+                                        data-dojo-props="iconClass:'adw-icon-rectangle',showLabel:false"
+                                        class="drawButton"
+                                        data-dojo-attach-event="onClick:StartDrawFPolygon"
+                                        title="${i18n.schemas.freehandPolygon}">
+                                    ${i18n.schemas.freehandPolygon}
+                                </button>
+                            </li>
+                            <li>
+                                <button data-dojo-type="dijit/form/Button"
+                                        data-dojo-attach-point="eraseDrawingButton"
+                                        data-dojo-props="iconClass:'fa fa-history fa-fw',showLabel:false,disabled:false"
+                                        data-dojo-attach-event="onClick:clearGraphics"
+                                        class="drawButton"
+                                        title="${i18n.schemas.clearDrawing}">
+                                    ${i18n.schemas.clearDrawing}
+                                </button>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <label>${i18n.expr.label}:</label>
+
+            <div data-dojo-attach-point="exprTextDom">
+                <select style="float: left;margin: 0;padding: 0; width: 105px" type="select"
+                        data-dojo-type="dijit/form/FilteringSelect"
+                        data-dojo-attach-point="exprSelectFieldDijit"></select>
+                <select style="float: left;margin-left: 5px; margin-right: 5px; padding: 0; width: 60px" type="select"
+                        data-dojo-type="dijit/form/FilteringSelect" data-dojo-attach-point="exprSelectDijit">
+                    <option value="=" selected>=</option>
+                    <option value="<>"><></option>
+                    <option value=">">></option>
+                    <option value=">="><=</option>
+                    <option value="<"><</option>
+                    <option value="<="><=</option>
+                </select>
+                <input style="float: left; padding: 0; width: 100px" type="text" name="fieldvariable"
+                       data-dojo-type="dijit/form/TextBox"
+                       data-dojo-props="trim:true, propercase:true" id="fieldvariable"
+                       data-dojo-attach-point="fieldvariable"/>
+            </div>
+
+			<div class="dijit dijitInline">
+			
+				<div data-dojo-type="dijit/form/Button"
+					 data-dojo-props="busyLabel:'${i18n.searchButton.busyLabel}',iconClass:'fa fa-search fa-fw','class':'searchButton'"
+					 data-dojo-attach-event="onClick:search"
+					 data-dojo-attach-point="searchButtonDijit">
+					${i18n.searchButton.label}
+				</div>
+
+				<div data-dojo-type="dijit/form/Button"
+					 data-dojo-props="iconClass:'fa fa-history fa-fw','class':'clearButton'"
+					 data-dojo-attach-point="clearButtonDijit">
+					${i18n.clearButton.label}
+				</div>
+			
+			</div>
+
+
+        </div>
+    </div>
+
+</div>

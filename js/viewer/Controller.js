@@ -241,6 +241,21 @@ define([
                         this.basemapLayers.push(bl);
                         this.data.push({name:value.title, id:i});
                     }
+					
+					if (value.type == 'GoogleMap') {
+                        var bl = new ol.layer.Tile({
+                            visible: false,
+                            source: new ol.source.OSM({
+                                url: 'http://mt{0-3}.google.com/vt/lyrs=' + value.style +'&x={x}&y={y}&z={z}',
+                                attributions: [
+                                    new ol.Attribution({ html: '© Google' }),
+                                    new ol.Attribution({ html: '<a href="https://developers.google.com/maps/terms">Terms of Use.</a>' })
+                                ]
+                            })
+                        });
+                        this.basemapLayers.push(bl);
+                        this.data.push({name:value.title, id:i});
+                    }
 
                     if (value.type == 'BingMap') {
                         var bl = new ol.layer.Tile({
