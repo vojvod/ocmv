@@ -6,6 +6,14 @@ define([
     return {
         // used for debugging your app
         isDebug: true,
+        
+        proxy: {
+            enabled: true,
+            address: 'http://myserver.com/proxy/proxy.ashx?',
+            alwaysUseProxy: false,
+            useProxyWhen: [/mygeoserver-dev:8080/ig, /mygeoserver-prod:8080/ig],
+            usePHPHandlers: false
+        },
 
         titles: {
             header: i18n.header,
@@ -543,7 +551,6 @@ define([
                     map: true
                 }
             }
-
         }
     };
 });

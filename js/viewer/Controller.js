@@ -22,7 +22,7 @@ define([
 
 ], function (dom, domStyle, domGeom, domClass, on, array, BorderContainer,
              ContentPane, FloatingTitlePane, lang, mapOverlay, FloatingWidgetDialog,
-             put, aspect, has, topic,Memory, Button, ComboBox, Menu) {
+             put, aspect, has, topic, Memory, Button, ComboBox, Menu) {
 
     return {
         panes: {
@@ -68,6 +68,18 @@ define([
             if (config.isDebug) {
                 window.app = this; //dev only
             }
+            
+            if (config.proxy && config.proxy.enabled && !config.proxy.usePHPHandlers) {
+                (function(open) {
+                    XMLHttpRequest.prototype.open = function(method, url, async, user, pass) {
+                        var proxyConfig = config.proxy;
+                        if (proxyConfig.address && (t.useProxyForHttp(url) || t.mustUseProxy(url))) {
+                            url = proxyConfig.address + url;
+                        }
+                        open.call(this, method, url, async, user, pass);
+                    };
+                })(XMLHttpRequest.prototype.open);
+            }
 
             window.addEventListener('resize', function () {
                 t.map.updateSize();
@@ -75,6 +87,28 @@ define([
 
             document.body.onresize = lang.hitch(this, 'winResize');
 
+        },
+        
+        mustUseProxy: function(url) {
+            if (!this.config.proxy.useProxyWhen) {
+                return false;
+            }
+            
+            var useProxy = false;
+            
+            array.forEach(this.config.proxy.useProxyWhen, function(proxyPattern){
+                if (proxyPattern.test(url)){
+                    useProxy = true;
+                    return;
+                }
+            });
+            
+            return useProxy;
+        },
+        
+        useProxyForHttp: function(url) {
+            var configProxy = this.config.proxy;            
+            return configProxy && configProxy.alwaysUseProxy && /^http/i.test(url);
         },
 
         winResize: function(){
@@ -684,6 +718,11 @@ define([
             //replace config layers
             if (options.layers) {
                 options.layers = this.layers;
+            }
+            
+            //replace config proxy
+            if (options.configProxy) {
+                options.config = {proxy: this.config.proxy};
             }
 
             if (options.mapRightClickMenu) {
