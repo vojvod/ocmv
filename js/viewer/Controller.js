@@ -81,12 +81,10 @@ define([
                 })(XMLHttpRequest.prototype.open);
             }
 
-            window.addEventListener('resize', function () {
-                t.map.updateSize();
+            window.addEventListener('resize', function (e) {
+                t.winResize(e);
             });
-
             document.body.onresize = lang.hitch(this, 'winResize');
-
         },
         
         mustUseProxy: function(url) {
@@ -111,11 +109,17 @@ define([
             return configProxy && configProxy.alwaysUseProxy && /^http/i.test(url);
         },
 
-        winResize: function(){
+        winResize: function(e){
             var t = this;
             setTimeout( function() {
                 t.map.updateSize();
-            }, 100);
+            });
+            if (e.stopPropagation) {
+                e.stopPropagation();
+            }
+            else {
+                e.cancelBubble = true;
+            }
         },
 
         // add topics for subscribing and publishing
@@ -275,8 +279,8 @@ define([
                         this.basemapLayers.push(bl);
                         this.data.push({name:value.title, id:i});
                     }
-					
-					if (value.type == 'GoogleMap') {
+                    
+                    if (value.type == 'GoogleMap') {
                         var bl = new ol.layer.Tile({
                             visible: false,
                             source: new ol.source.OSM({
