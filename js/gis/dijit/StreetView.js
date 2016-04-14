@@ -238,6 +238,8 @@ define([
             var panoPosition = this.panorama.getPosition();
             var positionLat = panoPosition.lat();
             var positionLong = panoPosition.lng();
+            var pov = this.panorama.getPov();
+            var headingRadians = pov.heading * (Math.PI/180);
 
             this.vectorLayer = new ol.layer.Vector({
                 source: new ol.source.Vector({
@@ -251,12 +253,12 @@ define([
                 }),
                 style: new ol.style.Style({
                     image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
-                        anchor: [0.5, 46],
+                        anchor: [0.5, 0.5],
                         anchorXUnits: 'fraction',
-                        anchorYUnits: 'pixels',
+                        anchorYUnits: 'fraction',
                         opacity: 1,
                         src: 'js/gis/dijit/StreetView/images/blueArrow.png',
-                        rotation: 0
+                        rotation: headingRadians
                     }))
                 })
             });
@@ -284,7 +286,7 @@ define([
             var panoPosition = this.panorama.getPosition();
             var positionLat = panoPosition.lat();
             var positionLong = panoPosition.lng();
-
+            var headingRadians = pov.heading * (Math.PI/180);
 
             if (this.vectorLayer) {
                 this.map.removeLayer(this.vectorLayer);
@@ -301,10 +303,10 @@ define([
                     image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
                         anchor: [0.5, 0.5],
                         anchorXUnits: 'fraction',
-                        anchorYUnits: 'pixels',
+                        anchorXUnits: 'fraction',
                         opacity: 1,
                         src: 'js/gis/dijit/StreetView/images/blueArrow.png',
-                        rotation: pov.heading
+                        rotation: headingRadians
                     }))
                 })
             });

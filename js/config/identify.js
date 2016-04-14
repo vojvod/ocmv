@@ -3,6 +3,7 @@ define({
     basemaps: true, //return basemap layers
     layers: true, //return map layers (no basemap layers)
     mapClickMode: true,
+    configProxy: true,
 
 	identifies: {
         easyTemparature: {  //layer tittle

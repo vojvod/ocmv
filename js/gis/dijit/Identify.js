@@ -1,12 +1,14 @@
 define([
     'dojo/_base/declare',
     'dijit/_WidgetBase',
+    'gis/dijit/_OCMVMixin',
     'dijit/_TemplatedMixin',
     'dijit/_WidgetsInTemplateMixin',
     'dojo/_base/lang',
     'dojo/_base/array',
     'dojo/topic',
     'dojo/dom-construct',
+    'dojo/request/xhr',
     'dojox/widget/Standby',
     'dojo/store/Memory',
     'dojo/text!./Identify/templates/Identify.html',
@@ -14,9 +16,9 @@ define([
     'dijit/form/Form',
     'dijit/form/FilteringSelect',
     'tools/xstyle/css!./Identify/css/Identify.css'
-], function (declare, _WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, lang, array, topic,
-             domconstruct, Standby, Memory, IdentifyTemplate, i18n) {
-    return declare([_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin], {
+], function (declare, _WidgetBase, _OCMVMixin, _TemplatedMixin, _WidgetsInTemplateMixin, lang, array, topic,
+             domconstruct, xhr, Standby, Memory, IdentifyTemplate, i18n) {
+    return declare([_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, _OCMVMixin], {
         widgetsInTemplate: true,
         templateString: IdentifyTemplate,
         baseClass: 'gis_IdentifyDijit',
@@ -102,10 +104,15 @@ define([
 
                     if (url) {
                         standby.show();
-                        dojo.xhrGet({
-                            url: 'proxy/getWMS_info.php?url=' + url,
-                            load: function (result) {
-                                var obj = JSON.parse(result);
+                        
+                        if (t.handleWithPHP()){
+                            url = 'proxy/getWMS_info.php?url=' + url;
+                        }
+                        
+                        xhr(url, {
+                            handleAs: 'json'
+                        }).then(function (result) {
+                                var obj = result;
 
                                 var fieldsToShow = [];
                                 for (var property0 in t.identifies) {
@@ -186,18 +193,17 @@ define([
 
                                 standby.hide();
 
-                            }
+                            }, function(error) {
+                                //alert('Error occurred');
+                                //TODO
                         });
                     }
-
                 }
             });
-
         },
 
         setMapClickMode: function (mode) {
             this.mapClickMode = mode;
         }
-
     });
 });
